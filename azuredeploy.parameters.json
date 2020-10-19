@@ -2,11 +2,44 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "subscriptionId": {
+            "value": "abe83788-3e6f-4adb-8bc4-e1b9bcec9209"
+        },
+        "name": {
+            "value": "103793node"
+        },
         "location": {
-            "value": "northeurope"
+            "value": "North Europe"
+        },
+        "hostingPlanName": {
+            "value": "ASP-fhwn2020-853d"
+        },
+        "serverFarmResourceGroup": {
+            "value": "fhwn2020"
+        },
+        "alwaysOn": {
+            "value": false
+        },
+        "sku": {
+            "value": "Free"
+        },
+        "skuCode": {
+            "value": "F1"
+        },
+        "workerSize": {
+            "value": "0"
+        },
+        "workerSizeId": {
+            "value": "0"
+        },
+        "numberOfWorkers": {
+            "value": "1"
+        },
+        "linuxFxVersion": {
+            "value": "NODE|12-lts"
         },
         "storageAccountName": {
-            "value": "softwaredeployment2020"
+            "value": "103793storage"
         },
         "accountType": {
             "value": "Standard_RAGRS"
@@ -25,6 +58,12 @@
         },
         "allowBlobPublicAccess": {
             "value": true
+        },
+        "networkAclsBypass": {
+            "value": "AzureServices"
+        },
+        "networkAclsDefaultAction": {
+            "value": "Allow"
         }
     }
 }
