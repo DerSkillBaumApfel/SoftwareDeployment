@@ -18,4 +18,5 @@ steps:
 - script: |
     sudo npm install
     sudo npm run build
+    sudo npm audit fix
   displayName: 'npm install and build'
