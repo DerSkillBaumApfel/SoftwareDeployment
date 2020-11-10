@@ -17,6 +17,5 @@ steps:
 
 - script: |
     npm install
-    npm install express --save
     npm run build
   displayName: 'npm install and build'
