@@ -11,7 +11,7 @@ https://softwaredeploymentlab2dev.azurewebsites.net/
 https://softwaredeploymentlab2release.azurewebsites.net/
 
 ## Wie werden releases freigegeben? 
-Über einen händischen Trigger mit Mailinfo innerhalb der Release pipeline. Normalerweise mit dem letzten Build, kann aber auch geändert werden.
+Über einen händischen Trigger mit Mailinfo innerhalb der Release pipeline. Normalerweise mit dem letzten Build, kann aber auch geändert werden. Insights ist gleich mit eingebunden und die Tests finden bereits nach jedem Build statt.
 
 ### Anmerkungen:
-Hoffentlich funktioniert die dev website, weil ich hab am 12.11 den ganzen Tag nur "503 Service Temporarily Unaivalable" bekommen, obwohl der Release funktioniert hat. Im Endeffekt ist aber die gleiche App wie beim release deployed (auch annähernd gleich). Ich konnte diesen Fehler aufgrund der Kuriosen Meldung leider auch nicht beheben, allerdings ist beim build&deployment selbst alles durchgegangen/positiv.
+Bei meiner Dev Website gibts eine kleine Unregelmäßigkeit: Am 12.11 habe ich auf der Dev Seite den ganzen Tag nur "503 Service Temporarily Unaivalable" bekommen, obwohl die Releaseseite funktioniert hat. Im Endeffekt ist aber die gleiche App wie beim Release deployed, was das ganze ein bisschen random macht. Ich konnte diesen Fehler aufgrund der kuriosen Meldung leider auch nicht beheben, allerdings ist beim build&deployment selbst alles durchgegangen/positiv. Zum besseren Verständnis habe ich zwei extra Screenshots in ./Screenshots abgelegt.
