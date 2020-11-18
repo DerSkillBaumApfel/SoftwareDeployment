@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+   db:
+     build:
+        context: .
+        dockerfile: AltDocker
+        args:                                          
+          MYSQL_ROOT_PASSWORD: 'rootpassword'
+          WORDPRESS_DB_NAME: 'wordpress'
+          WORDPRESS_USER_NAME: 'username'
+          WORDPRESS_ROOT_PASSWORD: 'password'
+     ports:
+        - "3306:3306"
+     expose:
+        - "3306"
+     volumes:
+        - type: volume
+          source: dbdata
+          target: /var/lib/mysql
+     restart: on-failure
+     environment:
+      DB_USER: username
+      DB_PASSWORD: password
+      DB_NAME: wordpress
+        
+
+   wordpress:
+     depends_on:
+       - db
+     build:
+        context: ./wp
+        dockerfile: Dockerfile
+     ports:
+       - "80:80"
+     volumes:
+       - type: volume
+         source: wpconfig
+         target: /etc/wordpress/
+       - type: volume
+         source: wpuploads
+         target: /var/www/html/wp-content/uploads/
+     restart: on-failure
+     environment:
+      DB_USER: username
+      DB_PASSWORD: password
+      DB_NAME: wordpress
+      DB_HOST: db:3306
+
+volumes:
+  dbdata:
+  wpconfig:
+  wpuploads:
