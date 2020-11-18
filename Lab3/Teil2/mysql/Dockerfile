@@ -1,15 +1,17 @@
 FROM debian:jessie
-
-ENV DB_NAME=wordpress
-ENV DB_USER=username
-ENV DB_PASSWORD=password
-
-USER root
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server expect
-COPY docker-entrypoint.sh docker-entrypoint.sh
-COPY install.sh install.sh
-COPY init.sql /docker-entrypoint-initdb.d/
-RUN ./install.sh
-ENTRYPOINT ./docker-entrypoint.sh
+ARG MYSQL_ROOT_PASSWORD
+ARG WORDPRESS_DB_NAME='wordpress'
+ARG WORDPRESS_USER_NAME='username'
+ARG WORDPRESS_ROOT_PASSWORD
+RUN apt update; \
+    DEBIAN_FRONTEND=noninteractive apt install -y mysql-server; \
+    service mysql start; \
+    mysql -e "CREATE DATABASE $WORDPRESS_DB_NAME DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"; \
+    mysql -e "GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"; \
+    mysql -e "GRANT ALL ON $WORDPRESS_DB_NAME.* TO '$WORDPRESS_USER_NAME'@'%' IDENTIFIED BY '$WORDPRESS_ROOT_PASSWORD';"; \
+    mysql -e "FLUSH PRIVILEGES;"; \
+    service mysql stop; \
+    sed -i 's/= 127.0.0.1/= 0.0.0.0/' /etc/mysql/my.cnf;
+ENTRYPOINT ["/bin/sh"]
+CMD ["/usr/bin/mysqld_safe"]
 EXPOSE 3306

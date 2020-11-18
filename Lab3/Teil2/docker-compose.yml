@@ -3,7 +3,7 @@ version: '3.7'
 services:
    db:
      build:
-        context: .
+        context: ./mysql
         dockerfile: AltDocker
         args:                                          
           MYSQL_ROOT_PASSWORD: 'rootpassword'
