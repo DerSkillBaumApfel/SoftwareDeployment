@@ -1,0 +1,7 @@
+resources:
+  - mysql-deployment.yaml
+  - wp-deployment.yaml
+secretGenerator:
+- name: mysql-pass
+  literals:
+  - password=swdep2020
